@@ -1,4 +1,4 @@
-# :hourglass: Testpoint
+# :hourglass: waitUntilExpect
 
 It waits for predicate or expectation to be truthy, and returns promise. Useful for tests when you are not able to hook directly into some asynchronous changes during test.
 
