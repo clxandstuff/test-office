@@ -1,0 +1,12 @@
+.app-header {
+  display: flex;
+  align-items: center;
+}
+
+.app-header__button {
+  @extend %button-reset;
+  color: #23D1A9;
+  font-size: 14px;
+  padding: 0;
+  margin: 0 10px;
+}

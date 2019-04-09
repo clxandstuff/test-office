@@ -1,0 +1,15 @@
+.input {
+  font-size: 14px;
+}
+
+.input--text {
+  font-size: 14px;
+  padding: 3px 9px;
+  border-radius: 2px;
+  border: 1px solid #e7e7e7;
+  color: #333;
+
+  &:active {
+    outline: none;
+  }
+}

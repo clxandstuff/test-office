@@ -1,0 +1,73 @@
+$size: 40px;
+
+.server-view-header__details {
+  margin-right: auto;
+  flex: none;
+}
+
+.server-view-header__name {
+  font-weight: 500;
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+
+.server-view-header {
+  display: flex;
+  padding: 24px 24px 24px $padding-left;
+  align-items: center;
+  border-bottom: 1px solid #EBEBEB;
+}
+
+.server-view-header-spec {
+  display: flex;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.5px;
+  align-items: center;
+}
+
+.server-view-header-spec__item {
+  color: #60666F;
+  margin-right: 12px;
+}
+
+.server-view-header-spec__value {
+  margin-left: 3px;
+}
+
+.server-view-header-spec__label {
+  opacity: 0.39;
+  font-weight: 300;
+}
+
+.server-view-header__add-behaviour-button {
+  @extend %button-reset;
+  text-decoration: none;
+  margin-right: 5px;
+  padding: 10px;
+}
+
+.server-view-header__remove-button {
+  background-color: transparent;
+  font-size: 20px;
+  transition: color .2s ease;
+  padding: 10px;
+  margin-right: 5px;
+
+  &:hover {
+    opacity: .5;
+  }
+}
+
+.server-view-header__edit-button {
+  color: inherit;
+  text-decoration: none;
+  padding: 10px;
+  margin-right: 5px;
+}
+
+.server-view-header__buttons {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}

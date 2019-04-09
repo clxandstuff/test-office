@@ -1,0 +1,51 @@
+.reaction-list-item {
+  background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #EBEBEB;
+  padding: 5px 20px;
+  font-size: 14px;
+  height: 36px;
+  position: relative;
+  border-bottom-left-radius: 5px;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.reaction-list-item__tag {
+  border-radius: 3px;
+  padding: 2px 6px;
+  margin-right: 10px;
+  font-size: 13px;
+  background-color: $behaviour-list-item-spec-tag-background-color;
+  color: darken($behaviour-list-item-spec-tag-background-color, 40%);
+}
+
+.reaction-list-item__remove-button {
+  @extend %button-reset;
+  font-size: 16px;
+  color: $behaviour-list-item-remove-button-font-color;
+  margin-left: auto;
+  transition: color .2s ease;
+
+  &:hover {
+    color: $behaviour-list-item-remove-button-hover-font-color;
+  }
+}
+
+.reaction-list-item__event-property {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
+.reaction-list-item__event-property-label {
+  font-size: 10px;
+  color: #AAA;
+}
+
+.reaction-list-item__event-property-value {
+  font-size: 12px;
+}

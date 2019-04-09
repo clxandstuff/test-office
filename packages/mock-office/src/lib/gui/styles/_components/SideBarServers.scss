@@ -1,0 +1,87 @@
+$padding-left: 36px;
+$lock-icon-width: 20px;
+
+.sidebar-servers__header {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  border-bottom: 1px solid #444851;
+  padding: 36px $padding-left + $lock-icon-width;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.sidebar-servers-header__icon {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.sidebar-servers__add-server-button {
+  @extend %button-reset;
+  color: $sidebar-servers-add-server-button-font-color;
+  margin-left: auto;
+
+  &:hover {
+    opacity: .5;
+  }
+
+}
+
+.sidebar-servers-list {
+  @extend %list-reset;
+}
+
+.sidebar-server-list__label {
+  @extend %button-reset;
+  display: block;
+  text-decoration: none;
+  width: 100%;
+  opacity: .45;
+  font-weight: 300;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.sidebar-servers-list-item--selected {
+  background-color: #0C0D11;
+}
+
+.sidebar-servers-list-item--selected .sidebar-server-list__label {
+  color: inherit;
+  opacity: 1;
+}
+
+.sidebar-servers-list-item {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  position: relative;
+  padding: 17px 0 17px $padding-left;
+  border-bottom: 1px solid #444851;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+
+.sidebar-server__status-indicator {
+  transition: border-color .3s ease;
+  font-size: 11px;
+  line-height: 20px;
+  border-bottom: 2px solid #979797;
+  margin-right: 20px;
+  text-align: center;
+  width: 29px;
+}
+
+.sidebar-server__status-indicator--up {
+  border-bottom: 2px solid #23D1A9;
+}
+
+.sidebar-server__secure-indicator {
+  margin-right: 5px;
+  width: $lock-icon-width;
+}

@@ -1,0 +1,10 @@
+.button {
+  @extend %button-reset;
+  background-color: #EEE;
+  border-radius: 4px;
+  padding: 4px 10px;
+  text-decoration: none;
+  color: inherit;
+  font-size: 14px;
+  font-weight: 500;
+}

@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700');
+
+$color-1: #ECECEC;
+$color-2: #6C7A89;
+$color-3: #D2D7D3;
+$color-4: #EEEEEE;
+$color-5: #BDC3C7;
+$color-6: #ECF0F1;
+$color-7: #95A5A6;
+$color-8: #DADFE1;
+$color-9: #ABB7B7;
+$color-10: #F2F1EF;
+$color-11: #BFBFBF;
+$color-error: #EC644B;
+$color-info: #56bdff;
+
+$font-family: 'Fira Sans', sans-serif;
+$font-color: #6C7A89;
+
+$primary-color: #02d77d;
+
+$sidebar-background-color: #edf0ee;
+$sidebar-font-color: #ECF0F1;
+$sidebar-width: 200px;
+
+$sidebar-servers-header-border-bottom: 1px solid #606b78;
+$sidebar-servers-add-server-button-font-color: #93a6ba;
+$sidebar-servers-list-item-font-color: #93a6ba;
+$sidebar-servers-list-item-selected-background-color: #667280;
+$sidebar-server-status-indicator-font-color: #7a8896;
+$sidebar-server-status-indicator-up-font-color: #02d77d;
+
+$inspect-server-header-border-bottom: 1px solid #edf0ee;
+$inspect-server-spec-label-font-color: #a7bdd4;
+$inspect-server-add-reaction-button-border: 1px solid #edf0ee;
+$inspect-server-remove-button-font-color: #a7bdd4;
+$inspect-server-remove-button-hover-font-color: #EC644B;
+
+$start-button-background-color: #FFF;
+$start-button-font-color: #02d77d;
+$start-button-border: 2px solid #02d77d;
+$start-button-default-border: 2px solid #edf0ee;
+
+$stop-button-background-color: #FFF;
+$stop-button-font-color: #EC644B;
+$stop-button-border: 2px solid #EC644B;
+
+$file-picker-button-border: 1px solid #edf0ee;
+
+$reactions-header-background-color: #edf0ee;
+$reaction-spec-tag-background-color: #edf0ee;
+$reaction-status-tag-background-color: #02d77d;
+$reaction-remove-button-font-color: #a7bdd4;
+$reaction-status-pending-background-color: rgba(2, 215, 125, 0.2);
+$reaction-remove-button-hover-font-color: #EC644B;
+$behaviours-header-background-color: #edf0ee;
+$behaviour-list-item-spec-tag-background-color: #edf0ee;
+$behaviour-list-item-remove-button-font-color: #a7bdd4;
+$behaviour-list-item-remove-button-hover-font-color: #EC644B;

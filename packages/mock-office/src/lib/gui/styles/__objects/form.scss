@@ -1,0 +1,146 @@
+.form {
+  width: 100%;
+}
+
+.form-row {
+  display: flex;
+  margin: 40px auto;
+  width: 100%;
+  justify-content: center;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.form__col {
+  flex: 2;
+  margin-left: 20px;
+  margin-right: 20px;
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.form__col--small {
+  flex: 1;
+}
+
+.form__header {
+  font-size: 24px;
+  text-align: center;
+  font-weight: 500;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.form__header-icon {
+  display: block;
+  margin: 12px auto;
+}
+
+.form__field {
+  width: 100%;
+}
+
+.form__label {
+  display: block;
+  font-size: 13px;
+  color: #999;
+  margin-bottom: 3px;
+}
+
+.form__button {
+  font-size: 16px;
+  background-color: #23D1A9;
+  border-radius: 100px;
+  padding: 12px 27px;
+  font-weight: 500;
+  color: #FFF;
+  margin: 0 10px;
+}
+
+.form__submit-icon {
+  display: inline-block;
+  height: 12px;
+  margin-right: 5px;
+}
+
+.form-field__label {
+  color: #00143C;
+  font-size: 12px;
+  margin-bottom: 5px;
+  display: block;
+  opacity: 0.5;
+}
+
+.form-field__input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #DDDFE4;
+  padding: 8px 0;
+  color: #484F59;
+  display: block;
+  font-size: 16px;
+  outline: none;
+  width: 100%;
+}
+
+.form-field__textarea {
+  background-color: transparent;
+  border: 1px solid #DDDFE4;
+  padding: 8px;
+  color: #484F59;
+  display: block;
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+}
+
+.form-field__select {
+  border: none;
+  border-bottom: 1px solid #DDDFE4;
+}
+
+.form-field__select .Select-control {
+  border: none;
+}
+
+.form-field__select .Select-arrow {
+  border-color: #23D1A9 transparent transparent !important;
+}
+
+.form-field__select.is-open .Select-arrow {
+  border-color: transparent transparent #23D1A9 !important;
+}
+
+.form-field__select.Select--single > .Select-control .Select-value {
+  padding-left: 0;
+}
+
+.form-field__switch {
+  margin: 8px 0;
+}
+
+.form-section {
+  margin-bottom: 40px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.form-section__header {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}

@@ -1,0 +1,31 @@
+$padding-left: 24px;
+
+.server-view {
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.server-view__main {
+  flex: auto;
+  background-color: #F6F7F9;
+}
+
+.server-view-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.server-view__behaviours {
+  flex: auto;
+  position: relative;
+}
+
+.server-view__behaviours-scroll-container {
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}

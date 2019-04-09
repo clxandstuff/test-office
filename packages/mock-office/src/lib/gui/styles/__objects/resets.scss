@@ -1,0 +1,15 @@
+%list-reset {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+%button-reset {
+  outline: none;
+  border: none;
+  background: transparent;
+  font-size: inherit;
+  color: inherit;
+  font-family: inherit;
+  text-align: inherit;
+}

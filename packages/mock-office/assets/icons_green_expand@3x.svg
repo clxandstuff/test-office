@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="13px" height="8px" viewBox="0 0 13 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>icons_green/expand@3x</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.5">
+        <g id="Hovers-/-Highlihts" transform="translate(-417.000000, -218.000000)" fill="#23D1A9">
+            <g id="Scene---1" transform="translate(393.000000, 161.000000)">
+                <g id="icons_green/expand" transform="translate(24.000000, 57.000000)">
+                    <path d="M6.5,7.4258409 C6.26305019,7.4258409 6.02613025,7.33546907 5.84535672,7.15466568 L0.271182693,1.58046178 C-0.090394231,1.21894459 -0.090394231,0.632722285 0.271182693,0.271205092 C0.632699887,-0.0904016973 1.21892219,-0.0904016973 1.58043938,0.271205092 L6.5,5.19070598 L11.4195606,0.271205092 C11.7810778,-0.0904016973 12.3673001,-0.0904016973 12.7288173,0.271205092 C13.0903942,0.632722285 13.0903942,1.21894459 12.7288173,1.58046178 L7.15464328,7.15466568 C6.97386975,7.33546907 6.73694981,7.4258409 6.5,7.4258409" id="Page-1" transform="translate(6.500000, 3.712920) scale(1, -1) rotate(-180.000000) translate(-6.500000, -3.712920) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

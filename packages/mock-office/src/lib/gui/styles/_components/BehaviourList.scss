@@ -1,0 +1,12 @@
+.behaviour-list {
+  @extend %list-reset;
+  width: 100%;
+}
+
+.behaviour-list__item {
+  margin-bottom: 2px;
+
+  &:last-child {
+    margin-bottom : 0;
+  }
+}

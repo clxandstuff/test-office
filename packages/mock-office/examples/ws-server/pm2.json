@@ -1,0 +1,14 @@
+[
+  {
+    "connection": {},
+    "messages": [
+      {
+        "body": {
+          "myMessage": "content"
+        },
+        "interval": 2000
+      }
+    ],
+    "loadedCounter": 1000
+  }
+]

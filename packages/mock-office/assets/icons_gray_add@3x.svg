@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>icons_gray/add@3x</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.5">
+        <g id="Hovers-/-Highlihts" transform="translate(-1144.000000, -129.000000)">
+            <g id="List-Header" transform="translate(394.000000, 126.000000)">
+                <g id="icons_gray/add" transform="translate(747.000000, 0.000000)">
+                    <g id="Group">
+                        <rect id="Bound" x="0" y="0" width="18" height="18"></rect>
+                        <rect id="Rectangle-6" fill="#83878E" x="8" y="3" width="2" height="12"></rect>
+                        <rect id="Rectangle-6" fill="#83878E" transform="translate(9.000000, 9.000000) rotate(-270.000000) translate(-9.000000, -9.000000) " x="8" y="3" width="2" height="12"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

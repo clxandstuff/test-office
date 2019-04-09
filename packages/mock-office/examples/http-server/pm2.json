@@ -1,0 +1,96 @@
+[
+  {
+    "request": {
+      "path": "/orders",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "body": [{
+        "id": "7aa86cda-6a86-45e8-bc19-786631e68b5f",
+        "placedAt": "2016-05-15T17:58:25.0020000Z",
+        "estimatedTimeOfPreparation": "2016-05-15T17:58:30.0020000Z",
+        "preparedAt": null,
+        "status": "new",
+        "details": {
+            "address": "address",
+            "lat": 1.11,
+            "long": 2.32,
+            "orderItems": [{
+                    "id": "f64bcf21-2f02-4734-a327-026b0cabb517",
+                    "product": {
+                        "id": "4e4029b7-d80c-49ca-b672-119d1ea5cf56",
+                        "name": "name",
+                        "preparationTime": 900,
+                        "validityTime": 3600
+                    },
+                    "status": "new",
+                    "timeToPrepare": 5
+                }
+            ]
+        }
+    }],
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  {
+    "request": {
+      "path": "/orders",
+      "method": "POST"
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "products" : [{
+                "id" : "8be7028b-d8b5-43a9-9fde-2adbcf2169a0",
+                "count" : 1
+            }
+        ],
+        "address" : "Karmelicka 30"
+    },
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  {
+    "request": {
+      "path": "/products",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "body": [
+        {
+          "id": "1",
+          "name": "name",
+          "preparationTime": 900,
+          "validityTime": 3600
+        }
+      ],
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  {
+    "request": {
+      "path": "/products",
+      "method": "POST"
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "id": "2",
+        "name": "name",
+        "preparationTime": 900,
+        "validityTime": 3600
+      },
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    }
+  }
+]

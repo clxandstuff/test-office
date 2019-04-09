@@ -1,0 +1,18 @@
+[
+  {
+    "event": {
+      "type": "connection"
+    },
+    "reactions": [
+      {
+        "type": "message",
+        "params": {
+          "message": "message from mock server"
+        },
+        "schedule": {
+          "interval": 1000
+        }
+      }
+    ]
+  }
+]

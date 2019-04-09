@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`editServerFormSave on ConnectionError actions 1`] = `
+Array [
+  Object {
+    "id": "id",
+    "type": "EditServerForm/FORM_SUBMITTED",
+    "values": Object {
+      "key": "value",
+    },
+  },
+  Object {
+    "reason": "Internet connection failed.",
+    "type": "editServerFormSave/FAILED",
+  },
+]
+`;
+
+exports[`editServerFormSave on InvalidRequestError actions 1`] = `
+Array [
+  Object {
+    "id": "id",
+    "type": "EditServerForm/FORM_SUBMITTED",
+    "values": Object {
+      "key": "value",
+    },
+  },
+  Object {
+    "reason": "Something went wrong. Please try again or refresh page.",
+    "type": "editServerFormSave/FAILED",
+  },
+]
+`;
+
+exports[`editServerFormSave on ResourceNotFoundError actions 1`] = `
+Array [
+  Object {
+    "id": "id",
+    "type": "EditServerForm/FORM_SUBMITTED",
+    "values": Object {
+      "key": "value",
+    },
+  },
+  Object {
+    "reason": "Something went wrong. Please try again or refresh page.",
+    "type": "editServerFormSave/FAILED",
+  },
+]
+`;
+
+exports[`editServerFormSave on UnsupportedStatusError actions 1`] = `
+Array [
+  Object {
+    "id": "id",
+    "type": "EditServerForm/FORM_SUBMITTED",
+    "values": Object {
+      "key": "value",
+    },
+  },
+  Object {
+    "reason": "Something went wrong. Please try again or refresh page.",
+    "type": "editServerFormSave/FAILED",
+  },
+]
+`;
+
+exports[`editServerFormSave success actions 1`] = `
+Array [
+  Object {
+    "id": "id",
+    "type": "EditServerForm/FORM_SUBMITTED",
+    "values": Object {
+      "key": "value",
+    },
+  },
+  Object {
+    "result": Object {},
+    "type": "editServerFormSave/SUCCEEDED",
+  },
+  Object {
+    "payload": Object {
+      "args": Array [
+        "/server/id",
+      ],
+      "method": "push",
+    },
+    "type": "@@router/CALL_HISTORY_METHOD",
+  },
+]
+`;

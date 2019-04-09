@@ -1,0 +1,114 @@
+.behaviour-list-item {
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  border-left: 4px solid transparent;
+  position: relative;
+}
+
+.behaviour-list-item--expired {
+  border-color: transparent;
+  opacity: 0.5;
+}
+
+.behaviour-list-item__event {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  border-left: 1px solid #EEE;
+  flex: auto;
+}
+
+.behaviour-list-item__event-property {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
+.behaviour-list-item__event-property-label {
+  font-size: 10px;
+  color: #AAA;
+}
+
+.behaviour-list-item__event-property-value {
+  font-size: 12px;
+}
+
+.behaviour-list-item__title {
+  margin-right: 15px;
+  flex: none;
+  font-weight: 500;
+}
+
+.behaviour-list-item__remove-button {
+@extend %button-reset;
+  font-size: 13px;
+  font-weight: 500;
+  color: #ED4608;
+  margin-left: auto;
+  margin-right: 20px;
+  transition: color .2s ease;
+  text-transform: uppercase;
+
+&:hover {
+    opacity: .5;
+  }
+}
+
+.behaviour-list-item__remove-button-icon {
+  height: 20px;
+}
+
+.behaviour-list-item__tag {
+  border-radius: 3px;
+  padding: 0 6px;
+  margin-right: 10px;
+  font-size: 13px;
+  line-height: 20px;
+  background-color: #EEE;
+  color: darken(#EEE, 40%);
+  height: 20px;
+}
+
+.behaviour-list-item__reactions {
+  display: none;
+}
+
+.behaviour-list-item__reactions--visible {
+  display: block;
+}
+
+.behaviour-list-item__expand-button {
+  @extend %button-reset;
+  height: 100%;
+  padding: 0 10px;
+  width: 30px;
+}
+
+.behaviour-list-item__expand-button--active {
+  transform: rotate(180deg);
+}
+
+.behaviour-list-item__spinner {
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.behaviour-list-item__params {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  width: 100px;
+  padding: 5px 0;
+}
+
+.behaviour-list-item-behaviour {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  height: 45px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  background-color: #FFFFFF;
+}

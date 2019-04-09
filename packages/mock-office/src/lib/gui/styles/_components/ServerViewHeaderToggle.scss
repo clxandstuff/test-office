@@ -1,0 +1,37 @@
+.server-view-header-toggle__icon {
+  transition: all .5s ease;
+}
+
+.server-view-header-toggle {
+  margin-right: 20px;
+
+  #Oval {
+    transition: all .3s ease;
+  }
+
+  &:hover {
+    #Oval {
+      r: 28;
+    }
+  }
+}
+
+.server-view-header-toggle--up {
+  #Oval {
+    stroke: #23D1A9;
+    r: 28;
+  }
+
+  .server-view-header-toggle__icon {
+    fill: #23D1A9;
+  }
+}
+
+.server-view-header-toggle {
+  @extend %button-reset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .1s ease-in-out;
+  padding: 0;
+}
