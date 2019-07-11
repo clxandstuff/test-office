@@ -1,7 +1,7 @@
-# Testpoint
+# Test Office
 
-This is set of tools for testing.
+Set of tools for different types of testing.
 
-* mocks server
+* mocks servers
 * test starter kits
 * test helpers
