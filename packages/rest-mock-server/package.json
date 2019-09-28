@@ -1,0 +1,39 @@
+{
+  "name": "rest-mock-server",
+  "version": "0.0.0",
+  "description": "REST API mock server",
+  "keywords": [
+    "rest",
+    "http",
+    "server",
+    "mock",
+    "server"
+  ],
+  "author": "Bartosz Adamczyk <bartoszadamczykk@gmail.com>",
+  "homepage": "https://github.com/the-clx/test-office#readme",
+  "license": "ISC",
+  "main": "lib/rest-mock-server.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/the-clx/test-office.git"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "bugs": {
+    "url": "https://github.com/the-clx/test-office/issues"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "http": "^0.0.0",
+    "rxjs": "^6.5.3"
+  }
+}
