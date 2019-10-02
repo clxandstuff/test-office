@@ -4,22 +4,19 @@ module.exports = {
    * http://pm2.keymetrics.io/docs/usage/application-declaration/
    */
   apps: [
-
     // App server only
     {
       name: 'http',
       script: './dist/bin/mock-office.js',
-      args: 'http -p 8123 -s /Users/bartoszadamczyk/Projects/aktualne/mock-office/examples/http-server/pm2.json',
+      args:
+        'http -p 8123 -s /Users/bartoszadamczyk/Projects/aktualne/mock-office/examples/http-server/pm2.json',
       env: {
         COMMON_VARIABLE: 'true'
       },
       env_production: {
         NODE_ENV: 'development'
       },
-      watch: [
-        './dist',
-        './examples/http-server/pm2.json'
-      ],
+      watch: ['./dist', './examples/http-server/pm2.json'],
       out_file: __dirname + '/pm2.log',
       error_file: __dirname + '/pm2.log',
       combine_logs: true
@@ -27,21 +24,19 @@ module.exports = {
     {
       name: 'ws',
       script: './dist/bin/mock-office.js',
-      args: 'ws -p 8234 -s /Users/bartoszadamczyk/Projects/aktualne/mock-office/examples/ws-server/pm2.json',
+      args:
+        'ws -p 8234 -s /Users/bartoszadamczyk/Projects/aktualne/mock-office/examples/ws-server/pm2.json',
       env: {
         COMMON_VARIABLE: 'true'
       },
       env_production: {
         NODE_ENV: 'development'
       },
-      watch: [
-        './dist',
-        './examples/ws-server/pm2.json'
-      ],
+      watch: ['./dist', './examples/ws-server/pm2.json'],
       out_file: __dirname + '/pm2.log',
       error_file: __dirname + '/pm2.log',
       combine_logs: true
-    },
+    }
     // with GUI
     // {
     //   name: 'gui',

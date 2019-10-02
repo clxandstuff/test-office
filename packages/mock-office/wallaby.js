@@ -1,8 +1,5 @@
 module.exports = wallaby => ({
-  files: [
-    'src/**/*.js',
-    'package.json',
-  ],
+  files: ['src/**/*.js', 'package.json'],
   tests: ['test/**/*.test.js'],
   env: {
     type: 'node',
@@ -11,6 +8,6 @@ module.exports = wallaby => ({
   testFramework: 'jest',
   preprocessors: {
     'src/**/*.js': wallaby.compilers.babel({}),
-    'test/**/*.js': wallaby.compilers.babel({}),
+    'test/**/*.js': wallaby.compilers.babel({})
   }
 });

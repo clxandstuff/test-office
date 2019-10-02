@@ -18,7 +18,7 @@
     "log-errors": "tail -F pm2-errors.log",
     "start": "node ./dist/bin/mock-office.js",
     "run": "npm-run-all build start",
-    "lint": "eslint 'src/**/*.js'",
+    "lint": "",
     "test": "jest --coverage",
     "tdd": "jest --watch",
     "storybook": "start-storybook -p 6006",
