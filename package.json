@@ -7,7 +7,7 @@
     "build": "babel src/index.js --out-dir dist",
     "test": "jest",
     "lint": "lerna run lint",
-    "prettify": "lerna prettify",
+    "prettify": "lerna run prettify",
     "commit": "git-cz"
   },
   "keywords": [],
