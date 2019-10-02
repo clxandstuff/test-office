@@ -22,7 +22,14 @@ exports.start = function start(port = 3000) {
       }
     });
   }).subscribe(({ res }) => {
-    res.json({ message: 'rest-mock-server response' });
+    const responseConfig = true;
+
+    if (responseConfig) {
+      res.json({ message: 'rest-mock-server: provided mock response' });
+      return;
+    }
+
+    res.json({ message: 'rest-mock-server: response mock not found' });
   });
 };
 
