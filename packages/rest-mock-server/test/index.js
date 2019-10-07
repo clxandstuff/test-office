@@ -3,23 +3,19 @@ const restMockServer = require('../src');
 restMockServer.start(3000, [
   {
     request: {
-      path: '/a'
+      path: '/user/1'
     },
     response: {
+      status: 201,
       body: JSON.stringify({ message: 'mock for /a' })
     }
   },
   {
     request: {
-      path: '/b'
+      path: '/user-exists/1'
     },
     response: {
-      body: JSON.stringify({ message: 'mock for /b' })
+      status: 204
     }
   }
-  // {
-  //   response: {
-  //     body: JSON.stringify({ message: 'mock for all paths' })
-  //   }
-  // }
 ]);

@@ -59,8 +59,21 @@ exports.start = function start(port = 3000, mocks = []) {
 
   request$.pipe(searchMock).subscribe(({ mock, res }) => {
     if (mock) {
-      res.json(JSON.parse(mock.response.body));
-      return;
+      if (!mock.response) {
+        res.end();
+        return;
+      }
+
+      if (mock.response.status) {
+        res.status(mock.response.status);
+      }
+
+      if (mock.response.body) {
+        res.send(JSON.parse(mock.response.body));
+        return;
+      }
+
+      res.end();
     }
 
     res.status(404).end('rest-mock-server: mocks not found');
