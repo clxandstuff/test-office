@@ -60,35 +60,36 @@ exports.start = function start(port = 3000, mocks = []) {
   };
 
   const sendResponse = ({ mock, res }) => {
-    if (mock) {
-      if (!mock.response) {
-        res.end();
-        return;
-      }
-
-      if (mock.response.status) {
-        res.status(mock.response.status);
-      }
-
-      if (mock.response.headers) {
-        res.set(mock.response.headers);
-      }
-
-      if (mock.response.cookies && mock.response.cookies.length > 0) {
-        mock.response.cookies.forEach(cookie => {
-          res.cookie(cookie.name, cookie.value, cookie.options);
-        });
-      }
-
-      if (mock.response.body) {
-        res.send(JSON.parse(mock.response.body));
-        return;
-      }
-
-      res.end();
+    if (!mock) {
+      res.status(404).end('rest-mock-server: mocks not found');
+      return;
     }
 
-    res.status(404).end('rest-mock-server: mocks not found');
+    if (!mock.response) {
+      res.end();
+      return;
+    }
+
+    if (mock.response.status) {
+      res.status(mock.response.status);
+    }
+
+    if (mock.response.headers) {
+      res.set(mock.response.headers);
+    }
+
+    if (mock.response.cookies && mock.response.cookies.length > 0) {
+      mock.response.cookies.forEach(cookie => {
+        res.cookie(cookie.name, cookie.value, cookie.options);
+      });
+    }
+
+    if (mock.response.body) {
+      res.send(JSON.parse(mock.response.body));
+      return;
+    }
+
+    res.end();
   };
 
   request$.pipe(map(findMock)).subscribe(sendResponse);
