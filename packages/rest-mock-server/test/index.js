@@ -10,15 +10,12 @@ restMockServer.start(3000, [
       headers: {
         'test-header': 'test-header value'
       },
-      body: JSON.stringify({ message: 'mock for /a' })
-    }
-  },
-  {
-    request: {
-      path: '/user-exists/1'
-    },
-    response: {
-      status: 204
+      body: JSON.stringify({
+        user: {
+          name: 'John',
+          lastName: 'Doe'
+        }
+      })
     }
   },
   {
@@ -26,6 +23,7 @@ restMockServer.start(3000, [
       path: '/login'
     },
     response: {
+      status: 204,
       cookies: [
         {
           name: 'cookie-1',

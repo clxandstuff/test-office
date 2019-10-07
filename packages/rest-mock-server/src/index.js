@@ -12,12 +12,14 @@ function matchPath(mock, req) {
 }
 
 function matchMock(req, mocks) {
+  const isTruthy = t => !t === false;
+
   if (mocks.length < 1) {
     return undefined;
   }
 
   return mocks.find(mock => {
-    return matchPath(mock, req);
+    return [matchPath(mock, req)].every(isTruthy);
   });
 }
 
