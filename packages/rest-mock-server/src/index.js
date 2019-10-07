@@ -72,6 +72,12 @@ exports.start = function start(port = 3000, mocks = []) {
         res.set(mock.response.headers);
       }
 
+      if (mock.response.cookies && mock.response.cookies.length > 0) {
+        mock.response.cookies.forEach(cookie => {
+          res.cookie(cookie.name, cookie.value, cookie.options);
+        });
+      }
+
       if (mock.response.body) {
         res.send(JSON.parse(mock.response.body));
         return;

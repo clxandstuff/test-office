@@ -20,5 +20,25 @@ restMockServer.start(3000, [
     response: {
       status: 204
     }
+  },
+  {
+    request: {
+      path: '/login'
+    },
+    response: {
+      cookies: [
+        {
+          name: 'cookie-1',
+          value: 'just a cookie'
+        },
+        {
+          name: 'cookie-2',
+          value: 'only http cookie',
+          options: {
+            httpOnly: true
+          }
+        }
+      ]
+    }
   }
 ]);
