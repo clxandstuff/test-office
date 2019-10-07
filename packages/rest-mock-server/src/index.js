@@ -11,7 +11,7 @@ function matchPath(mock, req) {
   return mock.request.path === req.path;
 }
 
-function matchMock(req, mocks) {
+function find(mocks, criteria) {
   const isTruthy = t => !t === false;
 
   if (mocks.length < 1) {
@@ -19,11 +19,11 @@ function matchMock(req, mocks) {
   }
 
   return mocks.find(mock => {
-    return [matchPath(mock, req)].every(isTruthy);
+    return [matchPath(mock, criteria)].every(isTruthy);
   });
 }
 
-function getRequestCriteria(req) {
+function getCriteria(req) {
   return {
     path: req.url
   };
@@ -50,25 +50,20 @@ exports.start = function start(port = 3000, mocks = []) {
       });
     });
 
-    const findMock = ({ req, res }) => {
-      const requestCriteria = getRequestCriteria(req);
-      const matchedMock = matchMock(requestCriteria, mocks);
+    const mockResponse = ({ req, res }) => {
+      const mock = find(mocks, getCriteria(req));
 
-      return {
-        mock: matchedMock,
-        res
-      };
-    };
-
-    const sendResponse = ({ mock, res }) => {
       if (!mock) {
-        res.status(404).end('rest-mock-server: mocks not found');
-        return;
+        return {
+          body: 'Mock not found',
+          res
+        };
       }
 
       if (!mock.response) {
-        res.end();
-        return;
+        return {
+          res
+        };
       }
 
       if (mock.response.status) {
@@ -86,13 +81,21 @@ exports.start = function start(port = 3000, mocks = []) {
       }
 
       if (mock.response.body) {
-        res.send(JSON.parse(mock.response.body));
-        return;
+        return {
+          res,
+          body: mock.response.body
+        };
       }
 
-      res.end();
+      return {
+        res
+      };
     };
 
-    request$.pipe(map(findMock)).subscribe(sendResponse);
+    const send = ({ body, res }) => {
+      res.send(body);
+    };
+
+    request$.pipe(map(mockResponse)).subscribe(send);
   });
 };
