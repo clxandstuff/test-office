@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "babel src/index.js --out-dir dist",
-    "test": "jest",
+    "build": "lerna run build",
+    "test": "lerna run test",
     "lint": "lerna run lint",
     "prettify": "lerna run prettify",
     "commit": "git-cz"
