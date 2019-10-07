@@ -7,6 +7,9 @@ restMockServer.start(3000, [
     },
     response: {
       status: 201,
+      headers: {
+        'test-header': 'test-header value'
+      },
       body: JSON.stringify({ message: 'mock for /a' })
     }
   },

@@ -68,6 +68,10 @@ exports.start = function start(port = 3000, mocks = []) {
         res.status(mock.response.status);
       }
 
+      if (mock.response.headers) {
+        res.set(mock.response.headers);
+      }
+
       if (mock.response.body) {
         res.send(JSON.parse(mock.response.body));
         return;
