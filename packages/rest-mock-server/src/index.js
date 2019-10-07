@@ -2,7 +2,7 @@ const { Observable } = require('rxjs');
 const express = require('express');
 const cors = require('cors');
 
-exports.start = function start(port = 3000) {
+exports.start = function start(port = 3000, mocks = []) {
   new Observable(subscriber => {
     const app = express();
     app.use(cors()).use((req, res, next) =>
@@ -22,13 +22,11 @@ exports.start = function start(port = 3000) {
       }
     });
   }).subscribe(({ res }) => {
-    const responseConfig = true;
-
-    if (responseConfig) {
-      res.json({ message: 'rest-mock-server: provided mock response' });
+    if (mocks.length === 0) {
+      res.status(400).end('rest-mock-server: mocks are empty');
       return;
     }
 
-    res.json({ message: 'rest-mock-server: response mock not found' });
+    res.json({ message: 'rest-mock-server: mocks are not empty' });
   });
 };

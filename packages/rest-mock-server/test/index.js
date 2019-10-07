@@ -1,3 +1,3 @@
-const restMockServer = require('../lib');
+const restMockServer = require('../src');
 
-restMockServer.start();
+restMockServer.start(3000, [{}]);
