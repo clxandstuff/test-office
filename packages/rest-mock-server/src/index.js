@@ -47,7 +47,7 @@ exports.start = function start(port = 3000, mocks = []) {
     });
   });
 
-  const searchMock = map(({ req, res }) => {
+  const findMock = ({ req, res }) => {
     const requestCriteria = getRequestCriteria(req);
     const matchedMock = matchMock(requestCriteria, mocks);
 
@@ -55,9 +55,9 @@ exports.start = function start(port = 3000, mocks = []) {
       mock: matchedMock,
       res
     };
-  });
+  };
 
-  request$.pipe(searchMock).subscribe(({ mock, res }) => {
+  const sendResponse = ({ mock, res }) => {
     if (mock) {
       if (!mock.response) {
         res.end();
@@ -77,5 +77,7 @@ exports.start = function start(port = 3000, mocks = []) {
     }
 
     res.status(404).end('rest-mock-server: mocks not found');
-  });
+  };
+
+  request$.pipe(map(findMock)).subscribe(sendResponse);
 };
