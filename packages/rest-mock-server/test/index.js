@@ -1,6 +1,6 @@
-const restMockServer = require('../src');
+const { start } = require('../src');
 
-restMockServer.start(3000, [
+start(3000, [
   {
     request: {
       path: '/user/1'
@@ -39,4 +39,6 @@ restMockServer.start(3000, [
       ]
     }
   }
-]);
+]).then(port => {
+  console.log(`server is listening on port ${port}`);
+});

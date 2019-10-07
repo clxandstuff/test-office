@@ -30,67 +30,69 @@ function getRequestCriteria(req) {
 }
 
 exports.start = function start(port = 3000, mocks = []) {
-  const request$ = Observable.create(subscriber => {
-    const app = express();
-    app.use(cors()).use((req, res) =>
-      subscriber.next({
-        req,
-        res
-      })
-    );
-    const server = app.listen(port, () => {
-      console.log(`server is listening on port ${port}`);
-    });
-
-    server.on('error', err => {
-      if (err.code === 'EADDRINUSE') {
-        throw new Error(`Port ${err.port} is in use. Choose different port.`);
-      }
-    });
-  });
-
-  const findMock = ({ req, res }) => {
-    const requestCriteria = getRequestCriteria(req);
-    const matchedMock = matchMock(requestCriteria, mocks);
-
-    return {
-      mock: matchedMock,
-      res
-    };
-  };
-
-  const sendResponse = ({ mock, res }) => {
-    if (!mock) {
-      res.status(404).end('rest-mock-server: mocks not found');
-      return;
-    }
-
-    if (!mock.response) {
-      res.end();
-      return;
-    }
-
-    if (mock.response.status) {
-      res.status(mock.response.status);
-    }
-
-    if (mock.response.headers) {
-      res.set(mock.response.headers);
-    }
-
-    if (mock.response.cookies && mock.response.cookies.length > 0) {
-      mock.response.cookies.forEach(cookie => {
-        res.cookie(cookie.name, cookie.value, cookie.options);
+  return new Promise(resolve => {
+    const request$ = Observable.create(subscriber => {
+      const app = express();
+      app.use(cors()).use((req, res) =>
+        subscriber.next({
+          req,
+          res
+        })
+      );
+      const server = app.listen(port, () => {
+        resolve(port);
       });
-    }
 
-    if (mock.response.body) {
-      res.send(JSON.parse(mock.response.body));
-      return;
-    }
+      server.on('error', err => {
+        if (err.code === 'EADDRINUSE') {
+          throw new Error(`Port ${err.port} is in use. Choose different port.`);
+        }
+      });
+    });
 
-    res.end();
-  };
+    const findMock = ({ req, res }) => {
+      const requestCriteria = getRequestCriteria(req);
+      const matchedMock = matchMock(requestCriteria, mocks);
 
-  request$.pipe(map(findMock)).subscribe(sendResponse);
+      return {
+        mock: matchedMock,
+        res
+      };
+    };
+
+    const sendResponse = ({ mock, res }) => {
+      if (!mock) {
+        res.status(404).end('rest-mock-server: mocks not found');
+        return;
+      }
+
+      if (!mock.response) {
+        res.end();
+        return;
+      }
+
+      if (mock.response.status) {
+        res.status(mock.response.status);
+      }
+
+      if (mock.response.headers) {
+        res.set(mock.response.headers);
+      }
+
+      if (mock.response.cookies && mock.response.cookies.length > 0) {
+        mock.response.cookies.forEach(cookie => {
+          res.cookie(cookie.name, cookie.value, cookie.options);
+        });
+      }
+
+      if (mock.response.body) {
+        res.send(JSON.parse(mock.response.body));
+        return;
+      }
+
+      res.end();
+    };
+
+    request$.pipe(map(findMock)).subscribe(sendResponse);
+  });
 };
