@@ -27,6 +27,6 @@ exports.start = function start(port = 3000, mocks = []) {
       return;
     }
 
-    res.json({ message: 'rest-mock-server: mocks are not empty' });
+    res.json(mocks[0]);
   });
 };
