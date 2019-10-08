@@ -1,5 +1,3 @@
-const { Observable } = require('rxjs');
-const { map } = require('rxjs/operators');
 const express = require('express');
 const cors = require('cors');
 const http = require('http');
@@ -32,43 +30,18 @@ function getCriteria(req) {
 
 exports.start = function start(port = 3000, mocks = []) {
   return new Promise(resolve => {
-    const request$ = Observable.create(subscriber => {
-      const app = express();
-      app.use(cors()).use((req, res) =>
-        subscriber.next({
-          req,
-          res
-        })
-      );
-      const server = http.createServer(app);
-
-      server.listen(port, () => {
-        console.log(`Server is listening on port: ${port}`);
-        resolve(server);
-      });
-
-      server.on('error', err => {
-        if (err.code === 'EADDRINUSE') {
-          throw new Error(`Port ${err.port} is in use. Choose different port.`);
-        }
-      });
-    });
-
-    const mockResponse = ({ req, res }) => {
+    const app = express();
+    app.use(cors()).use((req, res) => {
       const mock = find(mocks, getCriteria(req));
 
       if (!mock) {
-        res.status('404');
-        return {
-          body: 'Mock not found',
-          res
-        };
+        res.status('404').send('Mock not found');
+        return;
       }
 
       if (!mock.response) {
-        return {
-          res
-        };
+        res.send();
+        return;
       }
 
       if (mock.response.status) {
@@ -86,21 +59,23 @@ exports.start = function start(port = 3000, mocks = []) {
       }
 
       if (mock.response.body) {
-        return {
-          res,
-          body: mock.response.body
-        };
+        res.send(mock.response.body);
+        return;
       }
 
-      return {
-        res
-      };
-    };
+      res.send();
+    });
+    const server = http.createServer(app);
 
-    const send = ({ body, res }) => {
-      res.send(body);
-    };
+    server.listen(port, () => {
+      console.log(`Server is listening on port: ${port}`);
+      resolve(server);
+    });
 
-    request$.pipe(map(mockResponse)).subscribe(send);
+    server.on('error', err => {
+      if (err.code === 'EADDRINUSE') {
+        throw new Error(`Port ${err.port} is in use. Choose different port.`);
+      }
+    });
   });
 };
