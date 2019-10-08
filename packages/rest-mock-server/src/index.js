@@ -28,43 +28,56 @@ function getCriteria(req) {
   };
 }
 
+function mockResponse(mocks) {
+  return function m(req, res) {
+    const mock = find(mocks, getCriteria(req));
+
+    if (!mock) {
+      res.status('404').send('Mock not found');
+      return;
+    }
+
+    if (!mock.response) {
+      res.send();
+      return;
+    }
+
+    if (mock.response.status) {
+      res.status(mock.response.status);
+    }
+
+    if (mock.response.headers) {
+      res.set(mock.response.headers);
+    }
+
+    if (mock.response.cookies && mock.response.cookies.length > 0) {
+      mock.response.cookies.forEach(cookie => {
+        res.cookie(cookie.name, cookie.value, cookie.options);
+      });
+    }
+
+    if (mock.response.body) {
+      res.send(mock.response.body);
+      return;
+    }
+
+    res.end();
+  };
+}
+
+// eslint-disable-next-line no-unused-vars
+function onError(err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+}
+
 exports.start = function start(port = 3000, mocks = []) {
   return new Promise(resolve => {
     const app = express();
-    app.use(cors()).use((req, res) => {
-      const mock = find(mocks, getCriteria(req));
-
-      if (!mock) {
-        res.status('404').send('Mock not found');
-        return;
-      }
-
-      if (!mock.response) {
-        res.send();
-        return;
-      }
-
-      if (mock.response.status) {
-        res.status(mock.response.status);
-      }
-
-      if (mock.response.headers) {
-        res.set(mock.response.headers);
-      }
-
-      if (mock.response.cookies && mock.response.cookies.length > 0) {
-        mock.response.cookies.forEach(cookie => {
-          res.cookie(cookie.name, cookie.value, cookie.options);
-        });
-      }
-
-      if (mock.response.body) {
-        res.send(mock.response.body);
-        return;
-      }
-
-      res.send();
-    });
+    app
+      .use(cors())
+      .use(mockResponse(mocks))
+      .use(onError);
     const server = http.createServer(app);
 
     server.listen(port, () => {
