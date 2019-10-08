@@ -2,6 +2,7 @@ const { Observable } = require('rxjs');
 const { map } = require('rxjs/operators');
 const express = require('express');
 const cors = require('cors');
+const http = require('http');
 
 function matchPath(mock, req) {
   if (!mock.request || !mock.request.path) {
@@ -39,8 +40,11 @@ exports.start = function start(port = 3000, mocks = []) {
           res
         })
       );
-      const server = app.listen(port, () => {
-        resolve(port);
+      const server = http.createServer(app);
+
+      server.listen(port, () => {
+        console.log(`Server is listening on port: ${port}`);
+        resolve(server);
       });
 
       server.on('error', err => {
@@ -54,6 +58,7 @@ exports.start = function start(port = 3000, mocks = []) {
       const mock = find(mocks, getCriteria(req));
 
       if (!mock) {
+        res.status('404');
         return {
           body: 'Mock not found',
           res

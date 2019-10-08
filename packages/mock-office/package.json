@@ -19,7 +19,6 @@
     "start": "node ./dist/bin/mock-office.js",
     "run": "npm-run-all build start",
     "lint": "",
-    "test": "jest --coverage",
     "tdd": "jest --watch",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
