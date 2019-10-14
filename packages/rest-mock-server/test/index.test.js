@@ -3,7 +3,7 @@ const { start } = require('../src');
 
 const PORT = 3000;
 const getFullUrl = (path = '') => `http://localhost:${PORT}${path}`;
-const mocks = [
+const defaultMocks = [
   {
     request: {
       path: '/a'
@@ -48,53 +48,95 @@ const mocks = [
     }
   }
 ];
-let server;
 
-beforeAll(() => {
-  return start(PORT, mocks).then(runningServer => {
-    server = runningServer;
+function setup(mocks, config) {
+  return start(PORT, mocks, config);
+}
+
+function tearDown(server) {
+  return new Promise(resolve => {
+    server.close(resolve);
   });
-});
-
-afterAll(() => {
-  server.close();
-});
+}
 
 describe('start', () => {
   describe('when called', () => {
     describe('when request is sent to server', () => {
+      describe('when log is true', () => {
+        test('logs request to console', async () => {
+          const logSpy = jest.spyOn(console, 'log');
+          const server = await setup(defaultMocks, { log: true });
+          logSpy.mockReset();
+
+          await fetch(getFullUrl('/a'));
+
+          expect(logSpy).toHaveBeenCalled();
+          return tearDown(server);
+        });
+      });
+
+      describe('when log is function', () => {
+        test('calls log function with req', async () => {
+          const logMock = jest.fn();
+          const server = await setup(defaultMocks, { log: logMock });
+
+          await fetch(getFullUrl('/a'));
+
+          expect(logMock).toHaveBeenCalled();
+          return tearDown(server);
+        });
+      });
+
       describe('when mock not matched', () => {
-        test('responds with 404', () => {
-          return fetch(getFullUrl('/unmatched')).then(response => {
+        test('responds with 404', async () => {
+          const server = await setup(defaultMocks);
+
+          await fetch(getFullUrl('/unmatched')).then(response => {
             expect(response.status).toEqual(404);
           });
+
+          return tearDown(server);
         });
       });
 
       describe('when mock matched', () => {
         describe('by path', () => {
-          test('responds with mocked response', () => {
-            return fetch(getFullUrl('/a')).then(response => {
+          test('responds with mocked response', async () => {
+            const server = await setup(defaultMocks);
+
+            await fetch(getFullUrl('/a')).then(response => {
               expect(response.status).toEqual(200);
             });
+
+            return tearDown(server);
           });
 
-          test('responds with specified status', () => {
-            return fetch(getFullUrl('/user/1')).then(response => {
+          test('responds with specified status', async () => {
+            const server = await setup(defaultMocks);
+
+            await fetch(getFullUrl('/user/1')).then(response => {
               expect(response.status).toEqual(201);
             });
+
+            return tearDown(server);
           });
 
-          test('responds with specified headers', () => {
-            return fetch(getFullUrl('/user/1')).then(response => {
+          test('responds with specified headers', async () => {
+            const server = await setup(defaultMocks);
+
+            await fetch(getFullUrl('/user/1')).then(response => {
               expect(response.headers.get('test-header')).toEqual(
                 'test-header-value'
               );
             });
+
+            return tearDown(server);
           });
 
-          test('responds with specified body', () => {
-            return fetch(getFullUrl('/user/1')).then(response => {
+          test('responds with specified body', async () => {
+            const server = await setup(defaultMocks);
+
+            await fetch(getFullUrl('/user/1')).then(response => {
               return response.json().then(body => {
                 expect(body).toEqual({
                   user: {
@@ -104,6 +146,8 @@ describe('start', () => {
                 });
               });
             });
+
+            return tearDown(server);
           });
         });
       });

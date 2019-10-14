@@ -27,7 +27,7 @@
   "scripts": {
     "clean": "rm -rf lib",
     "build": "yarn clean && cp -r src/ lib/",
-    "test": "jest",
+    "test": "jest --runInBand",
     "start": "node test/index.js",
     "lint": "eslint src/**/*.js test/**/*.js",
     "prettify": "prettier --write src/**/*.js"

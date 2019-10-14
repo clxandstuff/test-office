@@ -65,18 +65,42 @@ function mockResponse(mocks) {
   };
 }
 
+function getLogFn(log) {
+  if (log === true) {
+    // eslint-disable-next-line no-console
+    return console.log;
+  }
+
+  if (typeof log === 'function') {
+    return log;
+  }
+
+  return () => {};
+}
+
+function createRequestLogger(log) {
+  return (req, _res, next) => {
+    log(req);
+    next();
+  };
+}
+
 // eslint-disable-next-line no-unused-vars
-function onError(err, req, res, next) {
+function onError(err, _req, res, _next) {
   console.error(err.stack);
   res.status(500).send('Something broke!');
 }
 
-exports.start = function start(port = 3000, mocks = []) {
+exports.start = function start(port = 3000, mocks = [], config = {}) {
+  const { log } = config;
+  const logFn = getLogFn(log);
+
   return new Promise(resolve => {
     const app = express();
     app
+      .use(createRequestLogger(logFn))
       .use(cors())
-      .use(mockResponse(mocks))
+      .use(mockResponse(mocks, logFn))
       .use(onError);
     const server = http.createServer(app);
 
