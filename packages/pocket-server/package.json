@@ -1,7 +1,7 @@
 {
-  "name": "rest-mock-server",
+  "name": "pocket-server",
   "version": "0.0.0",
-  "description": "REST API mock server",
+  "description": "Simple mock server",
   "keywords": [
     "rest",
     "http",
