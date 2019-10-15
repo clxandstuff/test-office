@@ -10,7 +10,7 @@
     "server"
   ],
   "author": "Bartosz Adamczyk <bartoszadamczykk@gmail.com>",
-  "homepage": "https://github.com/the-clx/test-office#readme",
+  "homepage": "https://github.com/the-clx/test-office/tree/develop/packages/pocket-server#readme",
   "license": "ISC",
   "main": "lib/rest-mock-server.js",
   "directories": {
