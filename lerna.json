@@ -3,5 +3,14 @@
   "packages": [
     "packages/*"
   ],
-  "version": "independent"
+  "version": "independent",
+  "command": {
+    "publish": {
+      "allowBranch": ["master", "develop", "release/*"],
+      "npmClient": "npm",
+      "conventionalCommits": true,
+      "yes": true,
+      "message": "chore: 🔖 publish new version."
+    }
+  }
 }
