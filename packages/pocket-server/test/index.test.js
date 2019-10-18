@@ -100,51 +100,83 @@ describe('start', () => {
       });
 
       describe('when mock matched', () => {
+        test('responds with specified status', async () => {
+          const server = await setup(defaultMocks);
+
+          await fetch(getFullUrl('/user/1')).then(response => {
+            expect(response.status).toEqual(201);
+          });
+
+          return tearDown(server);
+        });
+
+        test('responds with specified headers', async () => {
+          const server = await setup(defaultMocks);
+
+          await fetch(getFullUrl('/user/1')).then(response => {
+            expect(response.headers.get('test-header')).toEqual(
+              'test-header-value'
+            );
+          });
+
+          return tearDown(server);
+        });
+
+        test('responds with specified body', async () => {
+          const server = await setup(defaultMocks);
+
+          await fetch(getFullUrl('/user/1')).then(response => {
+            return response.json().then(body => {
+              expect(body).toEqual({
+                user: {
+                  name: 'John',
+                  lastName: 'Doe'
+                }
+              });
+            });
+          });
+
+          return tearDown(server);
+        });
+
         describe('by path', () => {
-          test('responds with mocked response', async () => {
-            const server = await setup(defaultMocks);
+          test('responds with mock', async () => {
+            const server = await setup([
+              {
+                request: {
+                  path: '/a'
+                }
+              }
+            ]);
 
             await fetch(getFullUrl('/a')).then(response => {
               expect(response.status).toEqual(200);
             });
 
-            return tearDown(server);
-          });
-
-          test('responds with specified status', async () => {
-            const server = await setup(defaultMocks);
-
-            await fetch(getFullUrl('/user/1')).then(response => {
-              expect(response.status).toEqual(201);
+            await fetch(getFullUrl('/b')).then(response => {
+              expect(response.status).toEqual(404);
             });
 
             return tearDown(server);
           });
+        });
 
-          test('responds with specified headers', async () => {
-            const server = await setup(defaultMocks);
+        describe('by method', () => {
+          test('responds with mock', async () => {
+            const server = await setup([
+              {
+                request: {
+                  method: 'POST'
+                }
+              }
+            ]);
 
-            await fetch(getFullUrl('/user/1')).then(response => {
-              expect(response.headers.get('test-header')).toEqual(
-                'test-header-value'
-              );
+            await fetch(getFullUrl(), { method: 'POST' }).then(response => {
+              expect(response.status).toEqual(200);
             });
 
-            return tearDown(server);
-          });
-
-          test('responds with specified body', async () => {
-            const server = await setup(defaultMocks);
-
-            await fetch(getFullUrl('/user/1')).then(response => {
-              return response.json().then(body => {
-                expect(body).toEqual({
-                  user: {
-                    name: 'John',
-                    lastName: 'Doe'
-                  }
-                });
-              });
+            await fetch(getFullUrl(), { method: 'GET' }).then(response => {
+              expect(response.status).toEqual(404);
             });
 
             return tearDown(server);

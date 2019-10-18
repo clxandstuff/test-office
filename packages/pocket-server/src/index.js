@@ -2,12 +2,20 @@ const express = require('express');
 const cors = require('cors');
 const http = require('http');
 
-function matchPath(mock, req) {
+function matchPath(mock, criteria) {
   if (!mock.request || !mock.request.path) {
     return true;
   }
 
-  return mock.request.path === req.path;
+  return mock.request.path === criteria.path;
+}
+
+function matchByMethod(mock, criteria) {
+  if (!mock.request || !mock.request.method) {
+    return true;
+  }
+
+  return mock.request.method === criteria.method;
 }
 
 function find(mocks, criteria) {
@@ -18,13 +26,16 @@ function find(mocks, criteria) {
   }
 
   return mocks.find(mock => {
-    return [matchPath(mock, criteria)].every(isTruthy);
+    return [matchPath(mock, criteria), matchByMethod(mock, criteria)].every(
+      isTruthy
+    );
   });
 }
 
 function getCriteria(req) {
   return {
-    path: req.url
+    path: req.url,
+    method: req.method
   };
 }
 
