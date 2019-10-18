@@ -102,7 +102,7 @@ function onError(err, _req, res, _next) {
   res.status(500).send('Something broke!');
 }
 
-exports.start = function start(port = 3000, mocks = [], config = {}) {
+exports.start = function start(port, mocks = [], config = {}) {
   const { log } = config;
   const logFn = getLogFn(log);
 
@@ -116,7 +116,7 @@ exports.start = function start(port = 3000, mocks = [], config = {}) {
     const server = http.createServer(app);
 
     server.listen(port, () => {
-      console.log(`Server is listening on port: ${port}`);
+      console.log(`Server is listening on port: ${server.address().port}`);
       resolve(server);
     });
 

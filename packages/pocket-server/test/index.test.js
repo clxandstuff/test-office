@@ -1,8 +1,7 @@
 const fetch = require('isomorphic-fetch');
 const { start } = require('../src');
 
-const PORT = 3000;
-const getFullUrl = (path = '') => `http://localhost:${PORT}${path}`;
+const getFullUrl = (port, path = '') => `http://127.0.0.1:${port}${path}`;
 const defaultMocks = [
   {
     request: {
@@ -50,7 +49,7 @@ const defaultMocks = [
 ];
 
 function setup(mocks, config) {
-  return start(PORT, mocks, config);
+  return start(undefined, mocks, config);
 }
 
 function tearDown(server) {
@@ -67,11 +66,12 @@ describe('start', () => {
           const logSpy = jest.spyOn(console, 'log');
           const server = await setup(defaultMocks, { log: true });
           logSpy.mockReset();
+          const { port } = server.address();
 
-          await fetch(getFullUrl('/a'));
+          await fetch(getFullUrl(port, '/a'));
+          await tearDown(server);
 
           expect(logSpy).toHaveBeenCalled();
-          return tearDown(server);
         });
       });
 
@@ -79,64 +79,64 @@ describe('start', () => {
         test('calls log function with req', async () => {
           const logMock = jest.fn();
           const server = await setup(defaultMocks, { log: logMock });
+          const { port } = server.address();
 
-          await fetch(getFullUrl('/a'));
+          await fetch(getFullUrl(port, '/a'));
+          await tearDown(server);
 
           expect(logMock).toHaveBeenCalled();
-          return tearDown(server);
         });
       });
 
       describe('when mock not matched', () => {
         test('responds with 404', async () => {
           const server = await setup(defaultMocks);
+          const { port } = server.address();
 
-          await fetch(getFullUrl('/unmatched')).then(response => {
-            expect(response.status).toEqual(404);
-          });
+          const response = await fetch(getFullUrl(port, '/unmatched'));
+          await tearDown(server);
 
-          return tearDown(server);
+          expect(response.status).toEqual(404);
         });
       });
 
       describe('when mock matched', () => {
         test('responds with specified status', async () => {
           const server = await setup(defaultMocks);
+          const { port } = server.address();
 
-          await fetch(getFullUrl('/user/1')).then(response => {
-            expect(response.status).toEqual(201);
-          });
+          const response = await fetch(getFullUrl(port, '/user/1'));
+          await tearDown(server);
 
-          return tearDown(server);
+          expect(response.status).toEqual(201);
         });
 
         test('responds with specified headers', async () => {
           const server = await setup(defaultMocks);
+          const { port } = server.address();
 
-          await fetch(getFullUrl('/user/1')).then(response => {
-            expect(response.headers.get('test-header')).toEqual(
-              'test-header-value'
-            );
-          });
-
-          return tearDown(server);
+          const response = await fetch(getFullUrl(port, '/user/1'));
+          expect(response.headers.get('test-header')).toEqual(
+            'test-header-value'
+          );
+          await tearDown(server);
         });
 
         test('responds with specified body', async () => {
           const server = await setup(defaultMocks);
+          const { port } = server.address();
 
-          await fetch(getFullUrl('/user/1')).then(response => {
-            return response.json().then(body => {
-              expect(body).toEqual({
-                user: {
-                  name: 'John',
-                  lastName: 'Doe'
-                }
-              });
+          const response = await fetch(getFullUrl(port, '/user/1'));
+          await tearDown(server);
+
+          return response.json().then(body => {
+            expect(body).toEqual({
+              user: {
+                name: 'John',
+                lastName: 'Doe'
+              }
             });
           });
-
-          return tearDown(server);
         });
 
         describe('by path', () => {
@@ -148,16 +148,13 @@ describe('start', () => {
                 }
               }
             ]);
+            const { port } = server.address();
+            const response1 = await fetch(getFullUrl(port, '/a'));
+            const response2 = await fetch(getFullUrl(port, '/b'));
+            await tearDown(server);
 
-            await fetch(getFullUrl('/a')).then(response => {
-              expect(response.status).toEqual(200);
-            });
-
-            await fetch(getFullUrl('/b')).then(response => {
-              expect(response.status).toEqual(404);
-            });
-
-            return tearDown(server);
+            expect(response1.status).toEqual(200);
+            expect(response2.status).toEqual(404);
           });
         });
 
@@ -170,16 +167,13 @@ describe('start', () => {
                 }
               }
             ]);
+            const { port } = server.address();
+            const response1 = await fetch(getFullUrl(port), { method: 'POST' });
+            const response2 = await fetch(getFullUrl(port), { method: 'GET' });
+            await tearDown(server);
 
-            await fetch(getFullUrl(), { method: 'POST' }).then(response => {
-              expect(response.status).toEqual(200);
-            });
-
-            await fetch(getFullUrl(), { method: 'GET' }).then(response => {
-              expect(response.status).toEqual(404);
-            });
-
-            return tearDown(server);
+            expect(response1.status).toEqual(200);
+            expect(response2.status).toEqual(404);
           });
         });
       });
