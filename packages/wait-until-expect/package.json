@@ -10,6 +10,6 @@
     "lint": "eslint src/**/*.js test/**/*.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "Bartosz Adamczyk <bartoszadamczykk@gmail.com>",
+  "license": "MIT"
 }

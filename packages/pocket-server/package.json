@@ -11,7 +11,7 @@
   ],
   "author": "Bartosz Adamczyk <bartoszadamczykk@gmail.com>",
   "homepage": "https://github.com/the-clx/test-office/tree/develop/packages/pocket-server#readme",
-  "license": "ISC",
+  "license": "MIT",
   "main": "lib/index.js",
   "directories": {
     "lib": "lib",

@@ -11,8 +11,8 @@
     "commit": "git-cz"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Bartosz Adamczyk <bartoszadamczykk@gmail.com>",
+  "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.4.3",
     "@babel/core": "^7.4.3",
