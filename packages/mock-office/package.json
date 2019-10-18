@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "babel src --out-dir dist --source-maps --ignore src/lib/gui/",
+    "build": "echo 'skipping mock-office build: temporary disabled'",
     "watch": "babel src --out-dir dist --source-maps --watch --ignore src/lib/gui/",
     "serve": "pm2 start ecosystem.config.js",
     "dev": "npm-run-all clean build watch",
