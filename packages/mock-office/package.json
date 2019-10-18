@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "App for mocking API",
   "main": "dist/bin/mock-office.js",
+  "private": true,
   "scripts": {
     "clean": "rm -rf dist",
     "build": "babel src --out-dir dist --source-maps --ignore src/lib/gui/",

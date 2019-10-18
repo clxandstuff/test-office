@@ -1,5 +1,6 @@
 {
   "name": "@test-point/wait-until-expect",
+  "private": true,
   "version": "0.0.1",
   "description": "",
   "main": "index.js",

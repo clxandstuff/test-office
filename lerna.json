@@ -1,7 +1,7 @@
 {
   "npmClient": "yarn",
   "packages": [
-    "packages/pocket-server"
+    "packages/*"
   ],
   "version": "independent"
 }
