@@ -1,13 +1,13 @@
 # `pocket-server`
 
-Simple mock server as a node module. Helpful for development, testing purposes.
+Simple mock server as a node module. Handy for development, testing purposes.
 
 ## Usage
 
 ### Response for all requests
 
 ```js
-const start = require('pocket-server');
+const { start } = require('pocket-server');
 
 // response for all requests
 
@@ -22,7 +22,7 @@ server.start(3000, [{
 ### Filtering by path
 
 ```js
-const start = require('pocket-server');
+const { start } = require('pocket-server');
 
 // response for all requests
 
@@ -39,7 +39,7 @@ server.start(3000, [{
 ### Error response
 
 ```js
-const start = require('pocket-server');
+const { start } = require('pocket-server');
 
 // response for all requests
 
@@ -58,7 +58,7 @@ server.start(3000, [{
 ### JSON response
 
 ```js
-const start = require('pocket-server');
+const { start } = require('pocket-server');
 
 // response for all requests
 
