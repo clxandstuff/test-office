@@ -5872,10 +5872,10 @@ json5@^1.0.1:
   dependencies:
     minimist "^1.2.0"
 
-json8@^0.9.2:
-  version "0.9.2"
-  resolved "https://registry.yarnpkg.com/json8/-/json8-0.9.2.tgz#dced62a24c8ed457702d45c71068081925c3011f"
-  integrity sha1-3O1iokyO1FdwLUXHEGgIGSXDAR8=
+json8@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/json8/-/json8-1.0.3.tgz#3248f4effbf9b95700fbc3acaa9475b48a15843c"
+  integrity sha512-rYGuGgWTmG0dzYwb137fIj5XWiezWBNhlyZpvf7okbHvCQ55X5S+1iuAIfzpPFGTYKkgLI8XX0wjsk/kse4jHA==
 
 jsonfile@^3.0.0:
   version "3.0.1"
