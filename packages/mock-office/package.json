@@ -97,7 +97,7 @@
     "fun-task": "^1.5.2",
     "http-proxy": "^1.16.2",
     "http-proxy-middleware": "^0.18.0",
-    "json8": "^0.9.2",
+    "json8": "^1.0.3",
     "modalo": "^0.2.3",
     "node-http-proxy": "^0.2.3",
     "npm-watch": "^0.1.8",
