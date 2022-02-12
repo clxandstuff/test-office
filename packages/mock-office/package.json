@@ -79,7 +79,7 @@
     "webpack-dev-server": "^2.11.2"
   },
   "dependencies": {
-    "ajv": "^4.11.6",
+    "ajv": "^6.12.3",
     "atob": "^2.1.1",
     "body-parser": "^1.17.1",
     "btoa": "^1.1.2",
